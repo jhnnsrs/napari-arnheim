@@ -1,1 +1,1 @@
-from .main import ArnheimWidget
+from .arnheim import ArnheimWidget
