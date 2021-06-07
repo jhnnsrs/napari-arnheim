@@ -1,6 +1,6 @@
 from napari_arnheim.widgets.dialogs.upload import createDataArrayFromLayer
 from napari_arnheim.forms.text_field import TextField
-from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QFormLayout, QGroupBox, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QFormLayout, QGroupBox, QLabel, QLineEdit, QVBoxLayout
 from grunnlag.schema import Representation, RepresentationVariety
 
 
@@ -11,7 +11,7 @@ class UploadFileDialog(QDialog):
         super().__init__(*args, **kwargs)
         self.layer = layer
         
-        self.representation_name = TextField(parent=self)
+        self.representation_name = QLineEdit()
 
         self.formGroupBox = QGroupBox("New Representation")
         layout = QFormLayout()
@@ -33,7 +33,7 @@ class UploadFileDialog(QDialog):
 
 
     def create(self):
-        self.name = self.representation_name.getValue()
+        self.name = self.representation_name.text()
 
         newarray = createDataArrayFromLayer(self.layer)
         self.accept()

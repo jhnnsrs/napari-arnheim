@@ -7,8 +7,8 @@ class Helper:
         self.viewer = viewer
         pass
 
-    def openRepresentationAsLayer(self, rep: Representation):
-        rep = Representation.objects.get(id=rep.id)
+    async def openRepresentationAsLayer(self, rep: Representation):
+        rep = await Representation.asyncs.get(id=rep.id)
 
         if "mask" in rep.tags:
             self.viewer.add_labels(rep.data.sel(c=0).data, name=rep.name, metadata={"rep":rep})

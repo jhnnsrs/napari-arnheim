@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "napari-arnheim"
-version = "0.1.12"
+version = "0.2.2"
 readme = "README.md"
 homepage = "https://github.com/jhnnsrs/napari-arnheim"
 description = "Napari with Arnheim Client Integrated"
@@ -9,13 +9,12 @@ authors = ["jhnnsrs <jhnnsrs@gmail.com>"]
 license = "CC BY-NC 3.0"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-grunnlag = "^0.2.18"
-napari = "^0.4.2"
-pyqt5 = "^5.12.5"
-pyqtwebengine = "^5.15.2"
-bergen = "^0.3.95"
+python = ">=3.7,<3.10"
+grunnlag = "^0.4.20"
+napari = "^0.4.8"
 qasync = "^0.13.0"
+PyQt5 = "^5.15.4"
+PyQtWebEngine = "^5.15.4"
 
 [tool.poetry.scripts]
 napari-arnheim = "napari_arnheim.run:main"

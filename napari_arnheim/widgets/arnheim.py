@@ -1,3 +1,6 @@
+from napari_arnheim.widgets.dialogs.upload import createDataArrayFromLayer
+from napari.layers.base.base import Layer
+from napari_arnheim.dialogs.upload import UploadFileDialog
 from napari_arnheim.widgets.toolbar import ArnheimToolbar
 from napari_arnheim.widgets.helper import Helper
 import xarray as xr
@@ -25,24 +28,12 @@ class ArnheimWidget(QWidget):
 
         self.default_kwargs = {
             "config_path": "bergen.yaml",
-            "force_new_token": False,
+            "force_new_token": True,
         }
         self.default_kwargs.update(bergen_params)
 
-        self._bergen = ProviderBergen(**self.default_kwargs)
-
-        self.user_button = QPushButton("Connect")
-        self.user_button.clicked.connect(self.connectBergen)
-
+        self.user_button = QPushButton("Logout")
         self.layout.addWidget(self.user_button)
-        self.setLayout(self.layout)
-
-
-
-    def buildToolbar(self):
-        self.toolbar = ArnheimToolbar(self, base=self)
-        return self.toolbar
-
 
 
     @property
@@ -67,29 +58,22 @@ class ArnheimWidget(QWidget):
     @asyncClose
     async def closeEvent(self, event):
         await self._bergen.disconnect_async()
-    
+
+
+
+    @asyncSlot()
+    async def createRepresentationFromCurrent(self):
+        return createDataArrayFromLayer(layer=self.viewer.active_layer)
+
 
     @asyncSlot()
     async def connectBergen(self):
         try:
+            self._bergen = ProviderBergen(**self.default_kwargs)
+            print("Here")
             await self._bergen.negotiate_async()
-
-            console.print("Reee")
-            self.layout.addWidget(self.buildToolbar())
-            self.layout.addWidget(self.buildContext())
-            console.print("ananan")
-            user = self._bergen.getUser()
-            self.user_button.setText(f"Logout {user.username}")
-            console.print("fffff")
-
         except:
             console.print_exception()
 
-        print("reached here")
 
-
-
-    def buildContext(self):
-        widget = ContextAwareWidget(base=self)
-        return widget
 

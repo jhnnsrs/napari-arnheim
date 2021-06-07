@@ -1,18 +1,19 @@
-
 arkitekt:
   host: localhost
   port: 8090
-  secure: False
-
+  secure: false
 herre:
   host: localhost
   port: 8000
-  client_id: huKQboFgvLaqfVb23QAJ7Kchp9Rzl87vCVRgWHjZ
-  client_secret: xfhe44E558wXCbQqHs3jbQWyOKxySVllFN5IjDu9dsf9Phbm268wsKqlavE6Ss6NA8Xr0DMV2tVSU1N10cAwcr3rj27zB11nL9cdahC6F9UEsM7NZ6F7H3G4mCJOm3U8
-  authorization_grant_type: implicit
-  redirect_uri: http://localhost:3000/callback
-  scopes: 
-      - read
-      - write
-      - provider
-  secure: False
+  secure: false
+  scopes:
+    - introspection
+    - provider
+    - can_provide
+    - can_assign
+    - can_forward_bounce
+  clientID: huKQboFgvLaqfVb23QAJ7Kchp9Rzl87vCVRgWHjZ
+  client_id: gjR954iV191mnV1NjqeAjdMJ2UoHydBnU42PZGtd
+  client_secret: 2tdEDNtS5ZN8Xm96gzAannLfQxHNHHJub0afBH2vUNpwV9O4s6Vu1znIrYVQAdPTuAmXKBU99f6EMrxMPV8mOsbvgLwMp5cr2K0U27iOYpyaBW8BnoANtr0Bt2Zvd4MT
+  authorization_grant_type: AUTHORIZATION_CODE
+  redirect_uri: http://localhost:3000
